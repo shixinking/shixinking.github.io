@@ -1,16 +1,286 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的网页</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>个人简介</title>
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- 图标 -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
+            background-size: 400% 400%;
+            animation: bg 12s ease infinite;
+            color: white;
+        }
+
+        @keyframes bg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6c63ff55, transparent 70%);
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .card {
+            width: 380px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.35),
+                0 0 30px rgba(108, 99, 255, 0.15);
+
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 4px solid rgba(255, 255, 255, 0.2);
+
+            margin-bottom: 20px;
+
+            transition: 0.3s;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .typing {
+            height: 28px;
+            margin-bottom: 20px;
+
+            font-size: 18px;
+            color: #bdbdff;
+        }
+
+        .desc {
+            margin-bottom: 30px;
+
+            font-size: 14px;
+            line-height: 1.8;
+
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .buttons a {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 16px;
+
+            color: white;
+            text-decoration: none;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            transition: 0.3s;
+        }
+
+        .buttons a:hover {
+            transform: translateY(-6px) scale(1.08);
+
+            background: rgba(255, 255, 255, 0.15);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(108, 99, 255, 0.4);
+
+            color: #bdbdff;
+        }
+
+        @media(max-width:480px) {
+            .card {
+                width: 90%;
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>欢迎来到我的网页</h1>
-    <p>这是我的第一个网页。</p>
-    <p>你可以通过以下链接了解更多关于我的信息：</p>
-    <ul>
-        <li><a href="aboutme.html">关于我</a></li>
-        <li><a href="contactme.html">联系我</a></li>
+
+    <div class="glow"></div>
+
+    <div class="card">
+
+        <!-- 头像 -->
+        <img class="avatar" src="photo.png" alt="头像">
+
+        <!-- 名字 -->
+        <h1>shixinking</h1>
+
+        <!-- 打字机 -->
+        <div class="typing" id="typing"></div>
+
+        <!-- 简介 -->
+        <div class="desc">
+            热爱编程、设计与创造。<br>
+            正在学习 Python / Web / AI 开发。<br>
+            希望未来成为真正能做出产品的人。
+        </div>
+
+        <!-- 图标按钮 -->
+        <div class="buttons">
+
+            <!-- GitHub -->
+            <a href="https://github.com/shixinking"
+                target="_blank"
+                title="GitHub">
+                <i class="fab fa-github fa-xl"></i>
+            </a>
+
+            <!-- 博客 -->
+            <a href="https://你的博客.com"
+                target="_blank"
+                title="Blog">
+                <i class="fas fa-blog fa-lg"></i>
+            </a>
+
+            <!-- 邮箱 -->
+            <a href="#"
+                title="Email">
+                <i class="fas fa-envelope fa-lg"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const texts = [
+            "Python Developer",
+            "Web Designer",
+            "AI Explorer",
+            "Open Source Lover"
+        ];
+
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+
+        (function type() {
+
+            if (count === texts.length) {
+                count = 0;
+            }
+
+            currentText = texts[count];
+
+            letter = currentText.slice(0, ++index);
+
+            document.getElementById("typing").textContent = letter;
+
+            if (letter.length === currentText.length) {
+
+                count++;
+                index = 0;
+
+                setTimeout(type, 1200);
+
+            } else {
+
+                setTimeout(type, 100);
+            }
+
+        })();
+
+    </script>
+
 </body>
+
 </html>
+
